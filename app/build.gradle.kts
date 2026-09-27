@@ -26,12 +26,6 @@ android {
       keyAlias = "upload"
       keyPassword = System.getenv("KEY_PASSWORD")
     }
-    create("debugConfig") {
-      storeFile = file("${rootDir}/debug.keystore")
-      storePassword = "android"
-      keyAlias = "androiddebugkey"
-      keyPassword = "android"
-    }
   }
 
   buildTypes {
@@ -41,7 +35,9 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       signingConfig = signingConfigs.getByName("release")
     }
-    debug { signingConfig = signingConfigs.getByName("debugConfig") }
+    debug { 
+      // Default debug signing config use karega, extra debug.keystore ki zaroorat nahi
+    }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -58,18 +54,12 @@ android {
   }
 }
 
-// This app is fully offline (local Room database only), so the AI Studio
-// template's network/cloud stack (Firebase, Retrofit, OkHttp, Moshi, the
-// Secrets and Google Services plugins) has been removed below — none of it
-// was referenced anywhere in the source, and keeping it around only added
-// unused dependencies, an unnecessary google-services.json requirement, and
-// slower/less reliable builds.
 dependencies {
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.activity.compose)
   implementation(libs.androidx.compose.material.icons.core)
   implementation(libs.androidx.compose.material.icons.extended)
-  implementation(libs.androidx.compose.material3)
+  implementation(libs.androidx.compose.material3) // <--- Ye line add kar di gayi hai
   implementation(libs.androidx.compose.ui)
   implementation(libs.androidx.compose.ui.graphics)
   implementation(libs.androidx.compose.ui.tooling.preview)
