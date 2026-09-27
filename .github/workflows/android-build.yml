@@ -1,11 +1,4 @@
-name: Build Android APK
-
-# NOTE: This project's Gradle wrapper jar (gradle/wrapper/gradle-wrapper.jar)
-# was not included in the export from AI Studio, so this workflow installs
-# Gradle directly (matching the version pinned in
-# gradle/wrapper/gradle-wrapper.properties) instead of relying on ./gradlew.
-# Opening the project in Android Studio works fine without any of this: the
-# IDE will offer to regenerate the wrapper the first time you sync.
+Name: Build Android APK
 
 on:
   push:
@@ -29,13 +22,13 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: 9.3.1
+          gradle-version: 8.7
 
-      - name: Regenerate Gradle wrapper (jar was not exported by AI Studio)
-        run: gradle wrapper --gradle-version 9.3.1 --distribution-type bin
+      - name: Regenerate Gradle wrapper
+        run: gradle wrapper --gradle-version 8.7 --distribution-type bin
 
       - name: Build debug APK
-        run: gradle  assembleDebug -x validateSigningDebug -stacktrace
+        run: gradle assembleDebug -x validateSigningDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
@@ -46,11 +39,6 @@ jobs:
   build-release:
     runs-on: ubuntu-latest
     needs: build-debug
-    # Only produces a signed release APK once you've added these as
-    # repository secrets: Settings -> Secrets and variables -> Actions
-    #   KEYSTORE_BASE64  - `base64 -w0 your-upload-key.jks`
-    #   STORE_PASSWORD
-    #   KEY_PASSWORD     (key alias must be "upload")
     if: ${{ vars.ENABLE_RELEASE_BUILD == 'true' }}
     steps:
       - name: Checkout
@@ -65,10 +53,10 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: 9.3.1
+          gradle-version: 8.7
 
       - name: Regenerate Gradle wrapper
-        run: gradle wrapper --gradle-version 9.3.1 --distribution-type bin
+        run: gradle wrapper --gradle-version 8.7 --distribution-type bin
 
       - name: Decode keystore
         env:
