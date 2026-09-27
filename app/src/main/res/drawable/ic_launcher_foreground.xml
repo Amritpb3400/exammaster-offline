@@ -1,0 +1,43 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="18"
+        android:translateY="18">
+        <!-- Graduation Cap Top Diamond -->
+        <path
+            android:fillColor="#FBBF24"
+            android:pathData="M36,12 L64,25 L36,38 L8,25 Z" />
+        <!-- Cap Under Cap -->
+        <path
+            android:fillColor="#D97706"
+            android:pathData="M18,30 L18,39 C18,48 54,48 54,39 L54,30 L36,38 Z" />
+        <!-- Tassel -->
+        <path
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.5"
+            android:strokeLineCap="round"
+            android:pathData="M60,27 L66,35 L66,45" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M64,45 H68 V49 H64 Z" />
+        <!-- Open Book Foundation -->
+        <path
+            android:fillColor="#38BDF8"
+            android:pathData="M14,50 C24,46 34,48 36,52 C38,48 48,46 58,50 L58,63 C48,59 38,61 36,65 C34,61 24,59 14,63 Z" />
+        <!-- Book Pages -->
+        <path
+            android:fillColor="#F8FAFC"
+            android:pathData="M16,52 C24,49 33,50 35,53 L35,63 C33,60 24,59 16,62 Z" />
+        <path
+            android:fillColor="#F8FAFC"
+            android:pathData="M37,53 C39,50 48,49 56,52 L56,62 C48,59 39,60 37,63 Z" />
+        <!-- Star / Spark of Excellence -->
+        <path
+            android:fillColor="#F59E0B"
+            android:pathData="M36,2 L38,8 L44,10 L38,12 L36,18 L34,12 L28,10 L34,8 Z" />
+    </group>
+</vector>
+
